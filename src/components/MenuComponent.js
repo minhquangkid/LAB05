@@ -54,7 +54,7 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
     // tạo hàm menu
     const menu = this.props.dishes.map((dish) => {
       return (
-        // sử dụng thẻ media
+        // sử dụng thẻ media (xem trong thư mục node_modules\reactstrap\lib ) để biết cấu tạo của nó
         // <div key={dish.id} className="col-12 mt-5">
         //   <Media tag="li">
         //     <Media left middle>
@@ -67,7 +67,7 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
         //   </Media>
         // </div>
 
-        // sử dụng thẻ Card
+        // sử dụng thẻ Card tương tự như thẻ Media ở trên
         <div key={dish.id} className="col-12  col-md-5 mt-1">
           <Card onClick={() => this.onDishSelect(dish)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
