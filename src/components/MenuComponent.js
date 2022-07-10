@@ -16,6 +16,7 @@ class Menu extends Component {
     constructor(props) {
     super(props); 
     this.state = {};
+    }
      render(){
         return ()
          }
@@ -35,16 +36,34 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
 
   renderDish(dish) {
     if (dish != null) {
-      const printTable = dish.comments.map((e) => {
-        // <p>{e.id}</p>;
-        console.log(e.id);
-        return (
-          <React.Fragment>
-            <p>{e.comment}</p>
-            <p>{e.author}</p>
-          </React.Fragment>
-        ); // một khi đã dùng JSX trong return thì không thể dùng cách lệnh js bên ngoài tag html như console.log được
-      });
+      class PrintTable extends Component {
+        constructor(props) {
+          super(props);
+          const test = this.props.mang.map((e) => {
+            return new Date(e.date);
+          });
+
+          console.log(typeof test[0]); // vì hàm new Date nó trả về là object nên khi để nguyên mà in ra trong JSX sẽ bị lỗi
+          console.log(test[0]);
+          console.log(test[0].toString()); // dùng này để đổi thành String hoặc dùng String(new Date(e.date)) đều được
+        }
+        render() {
+          return (
+            <div>
+              {this.props.mang.map((e) => {
+                return (
+                  <React.Fragment>
+                    <p>{e.comment}</p>
+                    <p>
+                      --{e.author},{String(new Date(e.date))}
+                    </p>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          );
+        }
+      }
       return (
         <React.Fragment>
           <div className="col-12 col-md-5 mt-1">
@@ -58,12 +77,7 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
           </div>
           <div className="col-12 col-md-5 mt-1">
             <h2>Comments</h2>
-            <div>{printTable}</div>
-            {/* <div>
-              {dish.comments.forEach((e) => {
-                return <p>{e.id}</p>;
-              })}
-            </div> */}
+            <PrintTable mang={dish.comments} />
           </div>
         </React.Fragment>
       );
@@ -78,6 +92,7 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
     const menu = this.props.monan.map((dish) => {
       // tham số truyền vào props của Menu có thuộc tính là monan, nó nằm ở file App.js
       return (
+        // return của hàm map
         <div key={dish.id} className="col-12  col-md-5 mt-1">
           <Card onClick={() => this.onDishSelect(dish)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
