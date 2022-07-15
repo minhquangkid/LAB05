@@ -11,23 +11,13 @@ import {
 } from "reactstrap";
 
 class DishDetail extends Component {
-  /* khi sử dụng class component phải theo cú pháp sau :
-  class Menu extends Component { 
-    constructor(props) {
-    super(props); 
-    this.state = {};
-    }
-     render(){
-        return ()
-         }
-  }
-trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng được
-  */
   constructor(props) {
     super(props); // tương tự với việc ghi this.props = props
+    console.log("Detail constructor");
   }
 
   render() {
+    console.log("Detail render");
     const tam = this.props.detail;
     if (tam != null) {
       class PrintTable extends Component {
@@ -77,5 +67,13 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
       return <div></div>;
     }
   } // không thể dùng hàm forEach hay các function nào khác (for, while) trong dấu {} bên trong JSX được, {} chỉ được dùng để chứa biểu thức gán hoặc tính toán, nên nếu ta muốn trả về 1 mảng thì dùng cách tạo mảng bằng map như  printTable
+
+  componentDidMount() {
+    console.log("Detail componentDidMount");
+  }
+  // componentDidMount đặt trước hay đằng sau render đều được nhưng khi chạy nó sẽ luôn chạy sau render
+  componentDidUpdate() {
+    console.log("Detail update");
+  }
 }
 export default DishDetail;
