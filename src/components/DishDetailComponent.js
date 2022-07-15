@@ -23,9 +23,6 @@ class DishDetail extends Component {
       class PrintTable extends Component {
         constructor(props) {
           super(props);
-          //   const test = this.props.mang.map((e) => {
-          //     return new Date(e.date);
-          //   });
         }
         render() {
           return (
@@ -47,21 +44,23 @@ class DishDetail extends Component {
 
       return (
         //return của DishDetail
-        <React.Fragment>
-          <div className="col-12 col-md-5 mt-1">
-            <Card>
-              <CardImg width="100%" src={tam.image} alt={tam.name} />
-              <CardBody>
-                <CardTitle>{tam.name}</CardTitle>
-                <CardText>{tam.description}</CardText>
-              </CardBody>
-            </Card>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 col-md-5 mt-1">
+              <Card>
+                <CardImg width="100%" src={tam.image} alt={tam.name} />
+                <CardBody>
+                  <CardTitle>{tam.name}</CardTitle>
+                  <CardText>{tam.description}</CardText>
+                </CardBody>
+              </Card>
+            </div>
+            <div className="col-12 col-md-5 mt-1">
+              <h2>Comments</h2>
+              <PrintTable mang={tam.comments} />
+            </div>
           </div>
-          <div className="col-12 col-md-5 mt-1">
-            <h2>Comments</h2>
-            <PrintTable mang={tam.comments} />
-          </div>
-        </React.Fragment>
+        </div>
       );
     } else {
       return <div></div>;

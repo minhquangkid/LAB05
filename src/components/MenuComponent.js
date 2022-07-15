@@ -9,7 +9,6 @@ import {
   CardBody,
   CardTitle,
 } from "reactstrap";
-import DishDetail from "./DishDetailComponent";
 
 class Menu extends Component {
   /* khi sử dụng class component phải theo cú pháp sau :
@@ -26,26 +25,19 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
   */
   constructor(props) {
     super(props); // tương tự với việc ghi this.props = props
-    this.state = {
-      selectedDish: null,
-    };
-    console.log("Menu constructor");
-  }
 
-  onDishSelect(dish) {
-    this.setState({ selectedDish: dish }); // chỉ có thể thay đổi giá trị của state bằng lệnh setState
+    console.log("Menu constructor");
   }
 
   // tạo hàm render
   render() {
-    console.log("Menu render");
     // tạo hàm menu với this.props là của class Menu ở trên
     const menu = this.props.monan.map((dish) => {
       // tham số truyền vào props của Menu có thuộc tính là monan, nó nằm ở file App.js
       return (
         // return của hàm map
         <div key={dish.id} className="col-12  col-md-5 mt-1">
-          <Card onClick={() => this.onDishSelect(dish)}>
+          <Card onClick={() => this.props.click(dish.id)}>
             <CardImg width="100%" src={dish.image} alt={dish.name} />
 
             <CardImgOverlay>
@@ -61,24 +53,10 @@ trong đó bắt buộc phải có phần render , mấy phần kia ko có cũng
     return (
       // của cú pháp render
       <div className="container">
-        <div className="row">
-          {/* <Media list>{menu}</Media> */}
-          {menu}
-        </div>
-        <div className="row">
-          <DishDetail detail={this.state.selectedDish} />
-        </div>
+        <div className="row">{menu}</div>
       </div>
     ); // class component chạy ở constructor trước rồi mới đến render nên ta tạo hàm renderDish ở đó trước, chú ý phải dùng điều kiện (dish != null) kèm theo vì nếu ko có nó sẽ bị lỗi nó null ko thể render được
   }
-  componentDidMount() {
-    console.log("Menu componentDidMount");
-  }
-
-  componentDidUpdate() {
-    console.log("Menu update");
-  }
-  // xem lại slide bài giảng tutor để biết thứ tự xuất hiện cho chính xác của chúng
 }
 
 export default Menu;
