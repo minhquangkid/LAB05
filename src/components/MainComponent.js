@@ -42,6 +42,7 @@ class Main extends Component {
     );
   }
 }
+// Menu được tạo thêm 2 thuộc tính props là monan và click, chúng được dùng ở MenuComponent.js
 {
   /* <Menu></Menu> là phần thân trên hiện thị 4 cái ảnh thức ăn ban đầu */
 }
