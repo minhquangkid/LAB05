@@ -2,7 +2,8 @@
 // được sử dụng như 1 container component
 "use strict";
 import React, { Component } from "react";
-import { Navbar, NavbarBrand } from "reactstrap";
+import Header from "./HeaderComponent";
+import Footer from "./FooterComponent";
 import Menu from "./MenuComponent";
 import { DISHES } from "../shared/dishes";
 import DishDetail from "./DishDetailComponent";
@@ -21,12 +22,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">This is Bootstrap</NavbarBrand>
-          </div>
-        </Navbar>
-
+        <Header />
         <Menu
           monan={this.state.dishes}
           click={(dishID) => this.onDishSelect(dishID)}
@@ -38,6 +34,7 @@ class Main extends Component {
             )[0]
           }
         />
+        <Footer />
       </div>
     );
   }
