@@ -21,7 +21,7 @@ function RenderMenuItem({ dish, onClick }) {
   );
 }
 const Menu = (props) => {
-  const menu = props.monan.map((dish) => {
+  const menu = props.dishes.map((dish) => {
     // tham số truyền vào props của Menu có thuộc tính là monan, nó nằm ở file App.js
     return (
       // return của hàm map
